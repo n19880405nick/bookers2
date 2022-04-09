@@ -1,2 +1,27 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<p id="notice"></p>
+
+<div class="container">
+    <div class="row">
+        
+        <div class="col-4">
+            <h2>User info</h2>
+            <ul class="list-group list-group-flush">
+                <% if current_user.profile_image.attached? %>
+                    <%= image_tag current_user.profile_image, size: "100x100" %>
+                <% else %>
+                    <%= image_tag 'default-image', size: "100x100" %>
+                <% end %>
+                <li class="list-group-item d-flex">
+                    <strong class="flex-fill">name</strong>
+                    <strong class="flex-fill"><%= current_user.name %></strong>
+                </li>
+                <li class="list-group-item d-flex">
+                    <strong class="flex-fill">introduction</strong>
+                    <strong class="flex-fill"><%= current_user.introduction %></strong>
+                </li>
+            </ul>
+            
+        </div>
+        
+    </div>
+</div>

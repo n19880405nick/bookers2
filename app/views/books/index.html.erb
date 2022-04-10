@@ -6,11 +6,13 @@
         <div class="col-4">
             <h2>User info</h2>
             <ul class="list-group list-group-flush">
-                <% if current_user.profile_image.attached? %>
-                    <%= image_tag current_user.profile_image, size: "100x100" %>
-                <% else %>
-                    <%= image_tag 'default-image', size: "100x100" %>
-                <% end %>
+                <li class="list-group-item">
+                    <% if current_user.profile_image.attached? %>
+                        <%= image_tag current_user.profile_image, size: "125x125" %>
+                    <% else %>
+                        <%= image_tag 'default-image', size: "125x125" %>
+                    <% end %>
+                </li>
                 <li class="list-group-item d-flex">
                     <strong class="flex-fill">name</strong>
                     <strong class="flex-fill"><%= current_user.name %></strong>
@@ -21,24 +23,62 @@
                 </li>
             </ul>
             <%= link_to edit_user_path(current_user.id) do %>
-                <button type="button" class="btn btn-outline-secondary btn-lg btn-block">
+                <button type="button" class="btn btn-outline-secondary btn-lg btn-block mt-2">
                 <i class="fas fa-user-cog"></i>
                 </button>
             <% end %>
             <div class="p-3">
                 <h2>New book</h2>
-                <%= form_with model: @user do |f| %>
+                <%= form_with model: @book do |f| %>
                     <div class="form-group">
                         <label>Title</label>
                         <%= f.text_field :title, class: "form-control" %>
                     </div>
                     <div class="form-group">
                         <label>Opinion</label>
-                        <%=f.text_area :opinion, class: "form-control" %>
+                        <%=f.text_area :body, class: "form-control" %>
                     </div>
                     <%= f.submit "Create Book", class: "btn btn-success my-2" %>
                 <% end %>
             </div>
+        </div>
+        
+        <div class="col-8">
+            <h2>Books</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Title</th>
+                        <th scope="col"></th>
+                        <th scope="col">Opinion</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @books.each do |books| %>
+                        <tr>
+                            <th scope="row">
+                                <% if books.profile_image.attached? %>
+                                    <%= image_tag _books.profile_image, size: "80x80" %>
+                                <% else %>
+                                    <%= image_tag 'default-image', size: "80x80" %>
+                                <% end %>
+                            </th>
+                            <td colspan="2">
+                                <%= link_to "#{books.title}", book_path(books.id) %>
+                            </td>
+                            <td colspan="5">
+                                <%= books.body %>
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
         </div>
         
     </div>

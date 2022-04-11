@@ -1,2 +1,37 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<p id="notice"></p>
+
+<div class="container">
+    <div class="row">
+        
+        <%= render 'books/list', book: @book, user: @user %>
+        
+        <div class="col-8">
+            <h2>Books</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Opinion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @books.each do |books| %>
+                        <tr>
+                            <th scope="row">
+                                <% if @user.profile_image.attached? %>
+                                    <%= image_tag @user.profile_image, size: "100x100" %>
+                                <% else %>
+                                    <%= image_tag 'default-image', size: "100x100" %>
+                                <% end %>
+                            </th>
+                            <td><%= link_to "#{books.title}", book_path(books.id) %></td>
+                            <td><%= books.body %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+</div>

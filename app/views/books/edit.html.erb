@@ -2,6 +2,22 @@
     <div class="row">
         <div class="col-6 pt-3 mx-auto">
             <h1><strong>Editing Book</strong></h1>
+            
+             <div id="error_explanation">
+                <% if @book.errors.any? %>
+                    <% if @book.errors.count == 1 %>
+                        <h2><%= @book.errors.count %> error prohibited this obj from being saved:</h2>
+                    <% else %>
+                        <h2><%= @book.errors.count %> errors prohibited this obj from being saved:</h2>
+                    <% end %>
+                    <ul>
+                        <% @book.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                    </ul>
+                <% end %>
+            </div>
+            
             <%= form_with model: @book, method: :patch do |f| %>
                 <div class="form-group">
                     <label>Title</label>

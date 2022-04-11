@@ -1,6 +1,22 @@
 <p id="notice"></p>
 
 <div class="container">
+    
+    <div id="error_explanation">
+        <% if @book.errors.any? %>
+            <% if @book.errors.count == 1 %>
+                <h2><%= @book.errors.count %> error prohibited this obj from being saved:</h2>
+            <% else %>
+                <h2><%= @book.errors.count %> errors prohibited this obj from being saved:</h2>
+            <% end %>
+            <ul>
+                <% @book.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+        
     <div class="row">
         
         <%= render 'list', book: @book, user: current_user %>

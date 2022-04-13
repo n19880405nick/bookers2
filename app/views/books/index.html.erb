@@ -21,7 +21,7 @@
         
         <%= render 'list', book: @book, user: current_user %>
         
-        <div class="col-8">
+        <div class="col-md-8 offset-md-1">
             <h2>Books</h2>
             <table class="table">
                 <thead>
@@ -41,10 +41,12 @@
                     <% @books.each do |books| %>
                         <tr>
                             <th scope="row">
-                                <% if books.user.profile_image.attached? %>
-                                    <%= image_tag books.user.profile_image, size: "80x80" %>
-                                <% else %>
-                                    <%= image_tag 'default-image', size: "80x80" %>
+                                <%= link_to user_path(books.user.id) do %>
+                                    <% if books.user.profile_image.attached? %>
+                                        <%= image_tag books.user.profile_image, size: "80x80" %>
+                                    <% else %>
+                                        <%= image_tag 'default-image', size: "80x80" %>
+                                    <% end %>
                                 <% end %>
                             </th>
                             <td colspan="2">

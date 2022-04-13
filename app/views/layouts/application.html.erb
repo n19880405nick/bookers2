@@ -23,7 +23,7 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
               <li class="nav-item">
-                <%= link_to root_path, class: "nav-link text-white" do %>
+                <%= link_to user_path(current_user.id), class: "nav-link text-white" do %>
                 <p><i class="fas fa-home"></i> Home</p>
                 <% end %>
               </li>
@@ -39,7 +39,7 @@
               </li>
               <li class="nav-item">
                 <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-white" do %>
-                <p><i class="fas fa-sign-out-alt"></i> logout</p>
+                <p><i class="fas fa-sign-out-alt"></i> Log out</p>
                 <% end %>
               </li>
               <% else %>
@@ -55,12 +55,12 @@
               </li>
               <li class="nav-item">
                 <%= link_to new_user_registration_path, class: "nav-link text-white" do %>
-                <p><i class="fas fa-user-plus"></i> sign up</p>
+                <p><i class="fas fa-user-plus"></i> Sign up</p>
                 <% end %>
               </li>
               <li class="nav-item">
                 <%= link_to new_user_session_path, class: "nav-link text-white" do %>
-                <p><i class="fas fa-sign-in-alt"></i> login</p>
+                <p><i class="fas fa-sign-in-alt"></i> Log in</p>
                 <% end %>
               </li>
               <% end %>

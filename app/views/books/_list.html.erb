@@ -1,22 +1,24 @@
-<div class="col-4">
+<div class="col-md-3">
             <h2>User info</h2>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <% if user.profile_image.attached? %>
-                        <%= image_tag user.profile_image, size: "125x125" %>
-                    <% else %>
-                        <%= image_tag 'default-image', size: "125x125" %>
-                    <% end %>
-                </li>
-                <li class="list-group-item d-flex">
-                    <strong class="flex-fill">name</strong>
-                    <strong class="flex-fill"><%= user.name %></strong>
-                </li>
-                <li class="list-group-item d-flex">
-                    <strong class="flex-fill">introduction</strong>
-                    <strong class="flex-fill"><%= user.introduction %></strong>
-                </li>
-            </ul>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <% if user.profile_image.attached? %>
+                            <%= image_tag user.profile_image, size: "125x125" %>
+                        <% else %>
+                            <%= image_tag 'default-image', size: "125x125" %>
+                        <% end %>
+                    </tr>
+                    <tr>
+                        <th scope="row">name</th>
+                        <th scope="row"><%= user.name %></th>
+                    </tr>
+                    <tr>
+                        <th scope="row">introduction</th>
+                        <th scope="row"><%= user.introduction %></th>
+                    </tr>
+                </tbody>
+            </table>
             <%= link_to edit_user_path(user.id) do %>
                 <button type="button" class="btn btn-outline-secondary btn-lg btn-block mt-2">
                 <i class="fas fa-user-cog"></i>
